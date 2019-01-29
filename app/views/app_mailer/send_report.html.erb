@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+  <p>New Bookings</p>
+  	<table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Desk</th>
+          <th>From To </th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @bookings.each do |b_data| %>
+         <tr>
+            <td><%=b_data.user.name%></td>
+      	    <td><%=b_data.desk.name%></td>
+      	    <td><%=b_data.start_date%> - <%=b_data.end_date%></td>
+        	</tr>
+        <% end %>
+      </tbody>
+    </table>
+  <p>Regards,</p>
+  <p>AppTeam.</p>
+  </body>
+</html>

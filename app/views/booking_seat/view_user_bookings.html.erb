@@ -1,0 +1,31 @@
+<a href="/" className='btn btn-primary'> << Go back to Home</a>
+<h3>Own Bookins </h3>
+<table border="1" className="table table-hover table-condensed" id="user_booked_table_id" style={{whiteSpace: "pre-wrap"}}>
+  <thead>
+    <tr>
+      <th>Desk</th>
+      <th>From To </th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user_booked_datas.each do |b_data| %>
+     <tr>
+  	    <td><%=b_data.desk.name%></td>
+  	    <td><%=b_data.start_date%> - <%=b_data.end_date%></td>
+  	    <td><a style={{fontSize: "smaller"}} href="<%=edit_booking_seat_path(b_data.id)%>" className='btn btn-primary'>Edit</a></td>
+        <td><a style={{fontSize: "smaller"}} href="<%=cancel_booking_path(b_data.id)%>" className='btn btn-primary'>Cancel</a></td>
+    	</tr>
+    <% end %>
+  </tbody>
+</table>
+<script>
+  $('#user_booked_table_id').DataTable({
+    "bAutoWidth": false,
+    "bDestroy": true,
+    "order": [],
+    "fnDrawCallback": function() {
+      },
+  });
+</script>

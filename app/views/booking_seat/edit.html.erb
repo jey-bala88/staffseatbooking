@@ -1,0 +1,45 @@
+<div class="login_wrapper">
+  <div class="animate form login_form">
+    <section class="login_content">
+      <a href="/" className='btn btn-primary'><< Go back to Home</a>
+
+      <h2>Edit Booking</h2>
+      <%=form_tag "/booking_seat/#{@booked_data.id}", :method => 'PUT' do %>
+        <div class="form-group">
+          <label class="control-label">Select Seat</label>
+		      <%=select_tag 'desk_id', options_for_select(Desk.all.collect{ |d| [d.name, d.id] }, @booked_data.desk_id), class: 'form-control'%>
+        </div>
+		    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">Start Date</label>
+            <div class='input-group date col-md-6 col-sm-6 col-xs-12' id='start_date'>
+                <input type='text' class="form-control" value="<%=@booked_data.start_date%>" name="start_date"/>
+                <span class="input-group-addon">
+                   <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">Start Date</label>
+            <div class='input-group date col-md-6 col-sm-6 col-xs-12' id='end_date'>
+                <input type='text' class="form-control" value="<%=@booked_data.end_date%>" name="end_date"/>
+                <span class="input-group-addon">
+                   <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <%= hidden_field_tag 'user_id', current_user.id %>
+        <%=submit_tag 'Update', class: 'btn btn-success' %>
+      <% end %>
+    </section>
+  </div>
+</div>
+<script>
+$(document).ready(function(){
+    $('#start_date').datetimepicker({
+      format: 'YYYY-MM-DD HH:mm:ss',
+    });
+    $('#end_date').datetimepicker({
+      format: 'YYYY-MM-DD HH:mm:ss',
+    });
+});
+</script>
